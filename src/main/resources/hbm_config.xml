@@ -14,8 +14,10 @@
 		<property name="password" value="root" />
 	</bean>
 
-<!-- can use either ->>> Session factory or Annotation session factory -->
-<!-- if using session factory bean method then hbm (ex:user.hbm.xml) file with mapping need to be used -->
+
+	<!-- can use either ->>> Session factory or Annotation session factory -->
+	<!-- if using session factory bean method then hbm (ex:user.hbm.xml) file 
+		with mapping need to be used -->
 
 	<!-- Hibernate 3 XML SessionFactory Bean definition -->
 	<!-- <bean id="hibernate3SessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> 
@@ -31,6 +33,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.dilip.model.User</value>
+				<value>com.dilip.model.Student</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -42,7 +45,31 @@
 		</property>
 	</bean>
 
-	<bean id="userDAO" class="com.dilip.dao.UserDAOImpl">
+<!-- 	<bean id="sessionFactory" -->
+<!-- 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+
+<!-- 		<property name="annotatedClasses"> -->
+<!-- 			<list> -->
+<!-- 				<value>com.studytrails.tutorials.springhibernatesessionfactoryannotation.Person -->
+<!-- 				</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+
+<!-- 		<property name="hibernateProperties"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
+<!-- 				<prop key="hibernate.current_session_context_class">thread</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+	<bean id="userDao" class="com.dilip.dao.UserDAOImpl">
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
+
+	<bean id="stuDAO" class="com.dilip.dao.StudentDAOImpl">
+	<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+
 </beans>

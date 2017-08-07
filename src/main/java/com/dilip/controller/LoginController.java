@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dilip.model.Student;
 import com.dilip.model.User;
 import com.dilip.dao.*;
 
@@ -72,6 +73,7 @@ public class LoginController {
 	public ModelAndView addUser(Model model, @RequestParam String uName, @RequestParam String uPass) {
 		
 		System.out.println("register user!");
+//		User user = new User();
 		User user = new User();
 		user.setusrUserName(uName);
 		user.setusrPassword(uPass);	
@@ -80,6 +82,7 @@ public class LoginController {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("hbm_config.xml");
 		context.getEnvironment();
 		UserDAO userDAO = context.getBean(UserDAO.class);
+		//StudentDAO stuDAO = context.getBean(StudentDAO.class);
 		
 		List<User> userList = userDAO.userList();
 		
@@ -99,7 +102,8 @@ public class LoginController {
 		}
 		
 		if(flag == false){
-			userDAO.saveUser(user);	
+			//stuDAO.saveStudent(user);	
+			userDAO.saveUser(user);
 			model.addAttribute("status","user successfully added!");
 			return new ModelAndView("../login", "regModel", model);
 			

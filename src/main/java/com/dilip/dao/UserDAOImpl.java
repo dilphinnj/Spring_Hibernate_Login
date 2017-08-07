@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dilip.model.User;
 
-//@Repository
+@Repository
 public class UserDAOImpl implements UserDAO {
 	
 	
